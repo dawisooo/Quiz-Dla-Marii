@@ -1,46 +1,73 @@
-<!DOCTYPE html>
-<html lang="pl">
+<!DOCTYPE html><html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URODZINOWY QUIZ DLA MARII</title>
+    <title>Quiz dla Mari Gmerek</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        body { font-family: Arial, sans-serif; text-align: center; }
         .question { display: none; }
         .result { display: none; }
-        img { max-width: 100%; height: auto; margin-top: 20px; }
     </style>
 </head>
 <body>
-    <h1>Odpowiedz na pytania!</h1>
+    <h1>ODPOWIEDZ NA PYTANIA!</h1>
     <div id="quiz">
         <div class="question" id="q1">
-            <p>1. Jaki kolor oczu ma twoj chlopak? </p>
-            <button onclick="nextQuestion(2)">Niebieski</button>
+            <p>Jaki kolor oczu ma Twój chłopak?</p>
+            <button onclick="checkAnswer(1, 'niebieskie')">Niebieski</button>
+            <button onclick="checkAnswer(1, 'zielone')">Zielone</button>
+            <button onclick="checkAnswer(1, 'brązowe')">Brązowe</button>
         </div>
         <div class="question" id="q2">
-            <p>2. Ile nóg ma mikel?</p>
-            <button onclick="nextQuestion(3)">Cztery</button>
+            <p>Jak wabi się Twój pies?</p>
+            <button onclick="checkAnswer(2, 'Misia')">Misia</button>
+            <button onclick="checkAnswer(2, 'Reksio')">Reksio</button>
+            <button onclick="checkAnswer(2, 'Burek')">Burek</button>
         </div>
         <div class="question" id="q3">
-            <p>3. Jak nazywa sie twój pies? </p>
-            <button onclick="showResult()"Misia </button>
+            <p>Ile nóg ma Mikel?</p>
+            <button onclick="checkAnswer(3, 'cztery')">Cztery</button>
+            <button onclick="checkAnswer(3, 'trzy')">Trzy</button>
+            <button onclick="checkAnswer(3, 'pięć')">Pięć</button>
+        </div>
+        <div class="question" id="q4">
+            <p>Ile masz teraz lat?</p>
+            <button onclick="checkAnswer(4, '17')">17</button>
+            <button onclick="checkAnswer(4, '16')">16</button>
+            <button onclick="checkAnswer(4, '18')">18</button>
+        </div>
+        <div class="question" id="q5">
+            <p>Czy podobał Ci się quiz i czy zasługujesz na prezent?</p>
+            <button onclick="showResult()">Tak</button>
+            <button onclick="showResult()">Tak</button>
+            <button onclick="showResult()">Tak</button>
         </div>
     </div>
     <div class="result" id="result">
-        <h2>Wszystkiego Najlepszego Maria!</h2>
-        <img src="prezent.jpg" alt="Wszystkiego najlepszego, Maria!">
+        <h2>Wszystkiego najlepszego, Maria!</h2>
+        <img src="prezent.jpg" alt="Twój prezent" width="300">
     </div>
     <script>
-        function nextQuestion(qNum) {
-            document.getElementById('q' + (qNum - 1)).style.display = 'none';
-            document.getElementById('q' + qNum).style.display = 'block';
+        let currentQuestion = 1;
+        const correctAnswers = {
+            1: 'niebieskie',
+            2: 'Misia',
+            3: 'cztery',
+            4: '17'
+        };
+        document.getElementById("q" + currentQuestion).style.display = "block";function checkAnswer(questionNumber, answer) {
+        if (correctAnswers[questionNumber] === answer) {
+            document.getElementById("q" + questionNumber).style.display = "none";
+            currentQuestion++;
+            if (currentQuestion <= 5) {
+                document.getElementById("q" + currentQuestion).style.display = "block";
+            }
         }
-        function showResult() {
-            document.getElementById('quiz').style.display = 'none';
-            document.getElementById('result').style.display = 'block';
-        }
-        document.getElementById('q1').style.display = 'block';
-    </script>
+    }
+    
+    function showResult() {
+        document.getElementById("quiz").style.display = "none";
+        document.getElementById("result").style.display = "block";
+    }
+</script>
+
 </body>
 </html>
