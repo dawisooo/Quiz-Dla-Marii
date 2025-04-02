@@ -1,49 +1,53 @@
 <!DOCTYPE html><html>
 <head>
-    <title>Quiz dla Mari Gmerek</title>
+    <title>Quiz dla Marii</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
+        body { font-family: Arial, sans-serif; text-align: center; font-size: 24px; }
         .question { display: none; }
         .result { display: none; }
+        h1, h2, p { font-size: 32px; }
+        button { font-size: 24px; padding: 15px; margin: 10px; }
+        img { width: 100%; height: auto; }
+        .rainbow-text span { font-weight: bold; font-size: 36px; }
     </style>
 </head>
 <body>
-    <h1>Ouiz dla Marii!</h1>
+    <h1 class="rainbow-text"></h1>
     <div id="quiz">
         <div class="question" id="q1">
-            <p>Jaki kolor oczu ma Twój chłopak?</p>
+            <p class="rainbow-text">Jaki kolor oczu ma Twój chłopak?</p>
             <button onclick="checkAnswer(1, 'niebieskie')">Niebieskie</button>
             <button onclick="checkAnswer(1, 'zielone')">Zielone</button>
             <button onclick="checkAnswer(1, 'brązowe')">Brązowe</button>
         </div>
         <div class="question" id="q2">
-            <p>Jak wabi się Twój pies?</p>
+            <p class="rainbow-text">Jak wabi się Twój pies?</p>
             <button onclick="checkAnswer(2, 'Misia')">Misia</button>
             <button onclick="checkAnswer(2, 'Reksio')">Reksio</button>
             <button onclick="checkAnswer(2, 'Burek')">Burek</button>
         </div>
         <div class="question" id="q3">
-            <p>Ile nóg ma Mikel?</p>
+            <p class="rainbow-text">Ile nóg ma Mikel?</p>
             <button onclick="checkAnswer(3, 'cztery')">Cztery</button>
             <button onclick="checkAnswer(3, 'trzy')">Trzy</button>
             <button onclick="checkAnswer(3, 'pięć')">Pięć</button>
         </div>
         <div class="question" id="q4">
-            <p>Ile masz teraz lat?</p>
+            <p class="rainbow-text">Ile masz teraz lat?</p>
             <button onclick="checkAnswer(4, '17')">17</button>
             <button onclick="checkAnswer(4, '16')">16</button>
             <button onclick="checkAnswer(4, '18')">18</button>
         </div>
         <div class="question" id="q5">
-            <p>Czy podobał Ci się quiz i czy zasługujesz na prezent?</p>
+            <p class="rainbow-text">Czy podobał Ci się quiz i czy zasługujesz na prezent?</p>
             <button onclick="showResult()">Tak</button>
             <button onclick="showResult()">Tak</button>
             <button onclick="showResult()">Tak</button>
         </div>
     </div>
     <div class="result" id="result">
-        <h2>Wszystkiego najlepszego, Maria!</h2>
-        <img src="Prezent.jpg" alt="Twój prezent" width="300">
+        <h2 class="rainbow-text">Wszystkiego najlepszego, Maria!</h2>
+        <img src="Prezent.jpg" alt="Twój prezent">
     </div>
     <script>
         let currentQuestion = 1;
@@ -67,6 +71,23 @@
         document.getElementById("quiz").style.display = "none";
         document.getElementById("result").style.display = "block";
     }
+    
+    function applyRainbowEffect() {
+        const elements = document.querySelectorAll(".rainbow-text");
+        elements.forEach(el => {
+            const text = el.innerText;
+            el.innerHTML = "";
+            const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement("span");
+                span.textContent = text[i];
+                span.style.color = colors[i % colors.length];
+                el.appendChild(span);
+            }
+        });
+    }
+    
+    document.addEventListener("DOMContentLoaded", applyRainbowEffect);
 </script>
 
 </body>
