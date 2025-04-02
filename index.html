@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URODZINOWY QUIZ DLA MARII</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .question { display: none; }
+        .result { display: none; }
+        img { max-width: 100%; height: auto; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Odpowiedz na pytania!</h1>
+    <div id="quiz">
+        <div class="question" id="q1">
+            <p>1. Jaki kolor oczu ma twoj chlopak? </p>
+            <button onclick="nextQuestion(2)">Niebieski</button>
+        </div>
+        <div class="question" id="q2">
+            <p>2. Ile nóg ma mikel?</p>
+            <button onclick="nextQuestion(3)">Cztery</button>
+        </div>
+        <div class="question" id="q3">
+            <p>3. Jak nazywa sie twój pies? </p>
+            <button onclick="showResult()"Misia </button>
+        </div>
+    </div>
+    <div class="result" id="result">
+        <h2>Wszystkiego Najlepszego Maria!</h2>
+        <img src="prezent.jpg" alt="Wszystkiego najlepszego, Maria!">
+    </div>
+    <script>
+        function nextQuestion(qNum) {
+            document.getElementById('q' + (qNum - 1)).style.display = 'none';
+            document.getElementById('q' + qNum).style.display = 'block';
+        }
+        function showResult() {
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('result').style.display = 'block';
+        }
+        document.getElementById('q1').style.display = 'block';
+    </script>
+</body>
+</html>
