@@ -20,7 +20,10 @@
             width: 100%;
             max-width: 800px;
         }
-        h1 { font-size: 48px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+        h1, p, button, h2 {
+            text-shadow: 3px 3px 5px black;
+        }
+        h1 { font-size: 48px; text-shadow: 4px 4px 6px black; }
         p { font-size: 48px; color: black; }
         button {
             font-size: 36px;
@@ -32,6 +35,7 @@
             border-radius: 15px;
             cursor: pointer;
             transition: transform 0.2s;
+            text-shadow: 3px 3px 5px black;
         }
         button:hover { transform: scale(1.1); }
         img {
@@ -42,7 +46,7 @@
             display: block;
             margin: 0 auto;
         }
-        .rainbow-title span { font-weight: bold; font-size: 48px; }
+        .rainbow-title span { font-weight: bold; font-size: 48px; text-shadow: 4px 4px 6px black; }
     </style>
 </head>
 <body>
@@ -115,6 +119,7 @@
             const span = document.createElement("span");
             span.textContent = text[i];
             span.style.color = colors[i % colors.length];
+            span.style.textShadow = "4px 4px 6px black";
             title.appendChild(span);
         }
     }
