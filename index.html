@@ -1,4 +1,5 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
 <head>
     <title>Quiz dla Marii</title>
     <style>
@@ -14,6 +15,8 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
+            position: relative;
         }
         .question, .result {
             display: none;
@@ -47,10 +50,62 @@
             margin: 0 auto;
         }
         .rainbow-title span { font-weight: bold; font-size: 48px; text-shadow: 4px 4px 6px black; }
+
+        /* Animacja balonów */
+        @keyframes floatBalloon {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .balloon {
+            position: absolute;
+            bottom: -50px;
+            animation: floatBalloon 15s infinite;
+            font-size: 50px;
+            animation-delay: calc(-15s * var(--i));
+        }
+        
+        /* Animacja konfetti */
+        @keyframes confettiFall {
+            0% { transform: translateY(-10vh) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .confetti {
+            position: absolute;
+            top: -20px;
+            width: 10px;
+            height: 10px;
+            background-color: #ff4081;
+            border-radius: 50%;
+            animation: confettiFall 3s linear infinite;
+            opacity: 0;
+        }
+        .confetti:nth-child(odd) { background-color: #ff6ec7; }
+        .confetti:nth-child(even) { background-color: #ff4081; }
     </style>
 </head>
 <body>
-    <h1 class="rainbow-title">Quiz dla Marii</h1>
+    <h1 class="rainbow-title">Quiz dla Marii 🎉🎂🎈</h1>
+    
+    <!-- Dodajemy balony animowane -->
+    <div class="balloon" style="left: 10%; --i: 1">🎈</div>
+    <div class="balloon" style="left: 20%; --i: 2">🎈</div>
+    <div class="balloon" style="left: 30%; --i: 3">🎈</div>
+    <div class="balloon" style="left: 40%; --i: 4">🎈</div>
+    <div class="balloon" style="left: 50%; --i: 5">🎈</div>
+    <div class="balloon" style="left: 60%; --i: 6">🎈</div>
+    <div class="balloon" style="left: 70%; --i: 7">🎈</div>
+    <div class="balloon" style="left: 80%; --i: 8">🎈</div>
+
+    <!-- Dodajemy konfetti animowane -->
+    <div class="confetti" style="left: 5%;"></div>
+    <div class="confetti" style="left: 15%;"></div>
+    <div class="confetti" style="left: 25%;"></div>
+    <div class="confetti" style="left: 35%;"></div>
+    <div class="confetti" style="left: 45%;"></div>
+    <div class="confetti" style="left: 55%;"></div>
+    <div class="confetti" style="left: 65%;"></div>
+    <div class="confetti" style="left: 75%;"></div>
+
     <div id="quiz">
         <div class="question" id="q1">
             <p>Jaki kolor oczu ma Twój chłopak?</p>
@@ -84,7 +139,7 @@
         </div>
     </div>
     <div class="result" id="result">
-        <h2>Wszystkiego najlepszego, Maria!</h2>
+        <h2>Wszystkiego najlepszego, Maria! 🎉🎂</h2>
         <img src="Prezent.jpg" alt="Twój prezent">
     </div>
     <script>
@@ -95,37 +150,38 @@
             3: 'cztery',
             4: '17'
         };
-        document.getElementById("q" + currentQuestion).style.display = "block";function checkAnswer(questionNumber, answer) {
-        if (correctAnswers[questionNumber] === answer) {
-            document.getElementById("q" + questionNumber).style.display = "none";
-            currentQuestion++;
-            if (currentQuestion <= 5) {
-                document.getElementById("q" + currentQuestion).style.display = "block";
+        document.getElementById("q" + currentQuestion).style.display = "block";
+        
+        function checkAnswer(questionNumber, answer) {
+            if (correctAnswers[questionNumber] === answer) {
+                document.getElementById("q" + questionNumber).style.display = "none";
+                currentQuestion++;
+                if (currentQuestion <= 5) {
+                    document.getElementById("q" + currentQuestion).style.display = "block";
+                }
             }
         }
-    }
-    
-    function showResult() {
-        document.getElementById("quiz").style.display = "none";
-        document.getElementById("result").style.display = "block";
-    }
-    
-    function applyRainbowEffect() {
-        const title = document.querySelector(".rainbow-title");
-        const text = title.innerText;
-        title.innerHTML = "";
-        const colors = ["red", "orange", "green", "blue", "indigo", "violet"];
-        for (let i = 0; i < text.length; i++) {
-            const span = document.createElement("span");
-            span.textContent = text[i];
-            span.style.color = colors[i % colors.length];
-            span.style.textShadow = "4px 4px 6px black";
-            title.appendChild(span);
+        
+        function showResult() {
+            document.getElementById("quiz").style.display = "none";
+            document.getElementById("result").style.display = "block";
         }
-    }
-    
-    document.addEventListener("DOMContentLoaded", applyRainbowEffect);
-</script>
-
+        
+        function applyRainbowEffect() {
+            const title = document.querySelector(".rainbow-title");
+            const text = title.innerText;
+            title.innerHTML = "";
+            const colors = ["red", "orange", "green", "blue", "indigo", "violet"];
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement("span");
+                span.textContent = text[i];
+                span.style.color = colors[i % colors.length];
+                span.style.textShadow = "4px 4px 6px black";
+                title.appendChild(span);
+            }
+        }
+        
+        document.addEventListener("DOMContentLoaded", applyRainbowEffect);
+    </script>
 </body>
 </html>
