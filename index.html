@@ -7,12 +7,21 @@
             text-align: center;
             font-size: 36px;
             background: linear-gradient(to right, #ff7eb3, #ff758c, #ff7eb3);
-            color: white;
+            color: black;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
-        .question { display: none; }
-        .result { display: none; }
-        h1, h2, p { font-size: 48px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+        .question, .result {
+            display: none;
+            width: 100%;
+            max-width: 800px;
+        }
+        h1 { font-size: 48px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+        p { font-size: 48px; color: black; }
         button {
             font-size: 36px;
             padding: 20px;
@@ -25,46 +34,53 @@
             transition: transform 0.2s;
         }
         button:hover { transform: scale(1.1); }
-        img { width: 80%; height: auto; border-radius: 20px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); }
-        .rainbow-text span { font-weight: bold; font-size: 48px; }
+        img {
+            width: 80%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            display: block;
+            margin: 0 auto;
+        }
+        .rainbow-title span { font-weight: bold; font-size: 48px; }
     </style>
 </head>
 <body>
-    <h1 class="rainbow-text">Quiz dla Marii</h1>
+    <h1 class="rainbow-title">Quiz dla Marii</h1>
     <div id="quiz">
         <div class="question" id="q1">
-            <p class="rainbow-text">Jaki kolor oczu ma Twój chłopak?</p>
-            <button onclick="checkAnswer(1, 'niebieskie')">Niebieskie</button>
+            <p>Jaki kolor oczu ma Twój chłopak?</p>
             <button onclick="checkAnswer(1, 'zielone')">Zielone</button>
+            <button onclick="checkAnswer(1, 'niebieskie')">Niebieskie</button>
             <button onclick="checkAnswer(1, 'brązowe')">Brązowe</button>
         </div>
         <div class="question" id="q2">
-            <p class="rainbow-text">Jak wabi się Twój pies?</p>
+            <p>Jak wabi się Twój pies?</p>
+            <button onclick="checkAnswer(2, 'Burek')">Burek</button>
             <button onclick="checkAnswer(2, 'Misia')">Misia</button>
             <button onclick="checkAnswer(2, 'Reksio')">Reksio</button>
-            <button onclick="checkAnswer(2, 'Burek')">Burek</button>
         </div>
         <div class="question" id="q3">
-            <p class="rainbow-text">Ile nóg ma Mikel?</p>
+            <p>Ile nóg ma Mikel?</p>
+            <button onclick="checkAnswer(3, 'pięć')">Pięć</button>
             <button onclick="checkAnswer(3, 'cztery')">Cztery</button>
             <button onclick="checkAnswer(3, 'trzy')">Trzy</button>
-            <button onclick="checkAnswer(3, 'pięć')">Pięć</button>
         </div>
         <div class="question" id="q4">
-            <p class="rainbow-text">Ile masz teraz lat?</p>
-            <button onclick="checkAnswer(4, '17')">17</button>
+            <p>Ile masz teraz lat?</p>
             <button onclick="checkAnswer(4, '16')">16</button>
             <button onclick="checkAnswer(4, '18')">18</button>
+            <button onclick="checkAnswer(4, '17')">17</button>
         </div>
         <div class="question" id="q5">
-            <p class="rainbow-text">Czy podobał Ci się quiz i czy zasługujesz na prezent?</p>
+            <p>Czy podobał Ci się quiz i czy zasługujesz na prezent?</p>
             <button onclick="showResult()">Tak</button>
             <button onclick="showResult()">Tak</button>
             <button onclick="showResult()">Tak</button>
         </div>
     </div>
     <div class="result" id="result">
-        <h2 class="rainbow-text">Wszystkiego najlepszego, Maria!</h2>
+        <h2>Wszystkiego najlepszego, Maria!</h2>
         <img src="Prezent.jpg" alt="Twój prezent">
     </div>
     <script>
@@ -91,18 +107,16 @@
     }
     
     function applyRainbowEffect() {
-        const elements = document.querySelectorAll(".rainbow-text");
-        elements.forEach(el => {
-            const text = el.innerText;
-            el.innerHTML = "";
-            const colors = ["red", "orange", "green", "blue", "indigo", "violet"];
-            for (let i = 0; i < text.length; i++) {
-                const span = document.createElement("span");
-                span.textContent = text[i];
-                span.style.color = colors[i % colors.length];
-                el.appendChild(span);
-            }
-        });
+        const title = document.querySelector(".rainbow-title");
+        const text = title.innerText;
+        title.innerHTML = "";
+        const colors = ["red", "orange", "green", "blue", "indigo", "violet"];
+        for (let i = 0; i < text.length; i++) {
+            const span = document.createElement("span");
+            span.textContent = text[i];
+            span.style.color = colors[i % colors.length];
+            title.appendChild(span);
+        }
     }
     
     document.addEventListener("DOMContentLoaded", applyRainbowEffect);
