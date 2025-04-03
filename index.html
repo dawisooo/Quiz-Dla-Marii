@@ -2,17 +2,35 @@
 <head>
     <title>Quiz dla Marii</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; font-size: 36px; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 36px;
+            background: linear-gradient(to right, #ff7eb3, #ff758c, #ff7eb3);
+            color: white;
+            padding: 20px;
+        }
         .question { display: none; }
         .result { display: none; }
-        h1, h2, p { font-size: 48px; }
-        button { font-size: 36px; padding: 20px; margin: 15px; }
-        img { width: 100%; height: auto; }
+        h1, h2, p { font-size: 48px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+        button {
+            font-size: 36px;
+            padding: 20px;
+            margin: 15px;
+            background: #ff4081;
+            border: none;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: scale(1.1); }
+        img { width: 80%; height: auto; border-radius: 20px; box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); }
         .rainbow-text span { font-weight: bold; font-size: 48px; }
     </style>
 </head>
 <body>
-    <h1 class="rainbow-text"></h1>
+    <h1 class="rainbow-text">Quiz dla Marii</h1>
     <div id="quiz">
         <div class="question" id="q1">
             <p class="rainbow-text">Jaki kolor oczu ma Twój chłopak?</p>
